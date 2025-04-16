@@ -1,14 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Giỏ Hàng - Thế Giới Di Động</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
+        body {
+            background-color: #121212;
+            color: #fdd835;
+
+        }
+
+
+        /* Container */
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        /* Giỏ hàng */
+        #cart-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e1e1e;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .item-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price,
+        .item-total {
+            font-weight: bold;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-controls button {
+            background-color: #fdd835;
+            border: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #1a1a1a;
+            border-radius: 4px;
+        }
+
+        .quantity-controls input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            background-color: #121212;
+            color: #fdd835;
+            border: 1px solid #444;
+            border-radius: 4px;
+        }
+
+        .remove {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .remove:hover {
+            background-color: #ff1a1a;
+        }
+
+        /* Tổng tiền */
+        #cart-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #fdd835;
+        }
+
+        /* Empty cart message */
+        .empty-cart {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .empty-cart a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #fdd835;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .empty-cart a:hover {
+            background-color: #ffe657;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        /* Giỏ hàng */
+        #cart-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e1e1e;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .item-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price,
+        .item-total {
+            font-weight: bold;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-controls button {
+            background-color: #fdd835;
+            border: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #1a1a1a;
+            border-radius: 4px;
+        }
+
+        .quantity-controls input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            background-color: #121212;
+            color: #fdd835;
+            border: 1px solid #444;
+            border-radius: 4px;
+        }
+
+        .remove {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .remove:hover {
+            background-color: #ff1a1a;
+        }
+
+        /* Tổng tiền */
+        #cart-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #fdd835;
+        }
+
+        /* Empty cart message */
+        .empty-cart {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .empty-cart a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #fdd835;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .empty-cart a:hover {
+            background-color: #ffe657;
+        }
     </style>
 </head>
 
@@ -20,15 +259,13 @@
         <div class="container">
             <ul id="down-header">
                 <li id="tgdd"><a href="./index.html"><img src="./image_TGDD/Screenshot 2025-02-09 214638.png"
-                            alt=""></a>
-                </li>
+                            alt=""></a></li>
                 <li><a href="#">Thanh Hóa<i class='bx bx-caret-down'></i></a></li>
                 <li><input type="text" placeholder=" Tìm Kiếm..."><i class='bx bx-search-alt-2'></i></li>
                 <li><a href="./giohang.html"><button><i class='bx bxs-shopping-bag'></i>Giỏ Hàng<span
                                 id="countSp"></span></button></a></li>
                 <li><a href="">Lịch Sử <br>Đơn Hàng <i class='bx bx-history'></i></a></li>
-                <li><a href=""><span class="btn-content"><span class="btn-top"></span></span>Mua Thẻ Nạp Ngay !</a>
-                </li>
+                <li><a href=""><span class="btn-content"><span class="btn-top"></span></span>Mua Thẻ Nạp Ngay !</a></li>
                 <li><a href="">24h Công Nghệ</a></li>
                 <li><a href="">Hỏi Đáp</a></li>
                 <li><a href="">Game App</a></li>
@@ -38,194 +275,98 @@
 
     <div class="container">
         <h1>Giỏ Hàng Của Bạn</h1>
-        <ul id="cart-list">
-        </ul>
-        <div id="cart-total">
-            Tổng tiền: 0đ
-        </div>
+        <ul id="cart-list"></ul>
+        <div id="cart-total">Tổng tiền: 0đ</div>
         <div class="empty-cart" style="display: none;">
             <p>Giỏ hàng của bạn đang trống.</p>
-            <a href="/">Tiếp tục mua sắm</a>
+            <a href="index.html">Tiếp tục mua sắm</a>
         </div>
     </div>
 
     <script>
         function getCart() {
-            const cartData = localStorage.getItem('cart');
-            return cartData ? JSON.parse(cartData) : [];
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : [];
         }
+
         function saveCart(cart) {
             localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-
-        const cartListElement = document.getElementById('cart-list');
-        const cartTotalElement = document.getElementById('cart-total');
-        const emptyCartMessage = document.querySelector('.empty-cart');
-
-        function displayCart() {
-            const cart = getCart();
-            cartListElement.innerHTML = '';
-
-            if (cart.length === 0) {
-                emptyCartMessage.style.display = 'block';
-                cartTotalElement.textContent = 'Tổng tiền: 0đ';
-                return;
-            } else {
-                emptyCartMessage.style.display = 'none';
-            }
-
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                const listItem = document.createElement('li');
-                listItem.classList.add('cart-item');
-                const priceNumber = parseFloat(item.price.replace(/\./g, '').replace('đ', ''));
-                const itemTotal = priceNumber * (item.quantity || 1);
-                total += itemTotal;
-
-                listItem.innerHTML = `
-                    <div class="item-info">
-                        <img src="${item.image}" alt="${item.name}">
-                        <span>${item.name}</span>
-                    </div>
-                    <div class="item-details">
-                        <span class="price">${item.price}</span>
-                        <div class="quantity-controls">
-                            <button class="decrease" data-index="${index}">-</button>
-                            <input type="number" value="${item.quantity || 1}" min="1" class="quantity-input" data-index="${index}">
-                            <button class="increase" data-index="${index}">+</button>
-                        </div>
-                        <span class="item-total">${formatPrice(itemTotal)}</span>
-                        <button class="remove" data-index="${index}">Xóa</button>
-                    </div>
-                `;
-                cartListElement.appendChild(listItem);
-            });
-
-            cartTotalElement.textContent = `Tổng tiền: ${formatPrice(total)}`;
-
-            addCartItemEventListeners();
         }
 
         function formatPrice(price) {
             return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
         }
 
-        function addCartItemEventListeners() {
-            const removeButtons = document.querySelectorAll('.remove');
-            removeButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const indexToRemove = parseInt(this.dataset.index);
-                    removeItemFromCart(indexToRemove);
-                });
-            });
-
-            const decreaseButtons = document.querySelectorAll('.decrease');
-            decreaseButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const indexToDecrease = parseInt(this.dataset.index);
-                    updateItemQuantity(indexToDecrease, -1);
-                });
-            });
-
-            const increaseButtons = document.querySelectorAll('.increase');
-            increaseButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const indexToIncrease = parseInt(this.dataset.index);
-                    updateItemQuantity(indexToIncrease, 1);
-                });
-            });
-
-            const quantityInputs = document.querySelectorAll('.quantity-input');
-            quantityInputs.forEach(input => {
-                input.addEventListener('change', function () {
-                    const indexToUpdate = parseInt(this.dataset.index);
-                    const newQuantity = parseInt(this.value);
-                    if (!isNaN(newQuantity) && newQuantity > 0) {
-                        updateItemQuantity(indexToUpdate, newQuantity - (getCart()[indexToUpdate].quantity || 1));
-                    } else {
-                        this.value = getCart()[indexToUpdate].quantity || 1;
-                    }
-                });
-            });
+        function updateCartCount() {
+            const cart = getCart();
+            const countSpElement = document.getElementById('countSp');
+            const totalQty = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+            countSpElement.textContent = totalQty > 0 ? totalQty : '';
         }
 
-
-        function removeItemFromCart(index) {
+        function removeItem(index) {
             const cart = getCart();
             cart.splice(index, 1);
             saveCart(cart);
-            displayCart();
+            renderCart();
         }
 
-
-        function updateItemQuantity(index, change) {
+        function changeQuantity(index, amount) {
             const cart = getCart();
-            if (cart[index]) {
-                cart[index].quantity = (cart[index].quantity || 1) + change;
-                if (cart[index].quantity < 1) {
-                    cart[index].quantity = 1;
-                }
-                saveCart(cart);
-                displayCart();
-            }
+            cart[index].quantity = Math.max(1, (cart[index].quantity || 1) + amount);
+            saveCart(cart);
+            renderCart();
         }
 
+        function renderCart() {
+            const cart = getCart();
+            const cartList = document.getElementById('cart-list');
+            const cartTotal = document.getElementById('cart-total');
+            const emptyMessage = document.querySelector('.empty-cart');
 
-        if (productList) {
-            productList.addEventListener('click', function (event) {
-                const addToCartButton = event.target.closest('.add-to-cart');
-                if (addToCartButton) {
-                    const productItem = addToCartButton.closest('.product-item');
-                    if (productItem) {
-                        const nameElement = productItem.querySelector('.product-name');
-                        const priceElement = productItem.querySelector('.product-price');
-                        const imageElement = productItem.querySelector('img');
+            cartList.innerHTML = '';
+            let total = 0;
 
-                        if (nameElement && priceElement && imageElement) {
-                            const productName = nameElement.textContent;
-                            const productPrice = priceElement.textContent;
-                            const productImage = imageElement.src;
+            if (cart.length === 0) {
+                emptyMessage.style.display = 'block';
+                cartTotal.textContent = 'Tổng tiền: 0đ';
+                return;
+            } else {
+                emptyMessage.style.display = 'none';
+            }
 
-                            const productToAdd = {
-                                name: productName,
-                                price: productPrice,
-                                image: productImage
-                            };
+            cart.forEach((item, index) => {
+                const quantity = item.quantity || 1;
+                const priceNumber = parseFloat(item.price.replace(/[^\d]/g, ''));
+                const itemTotal = quantity * priceNumber;
+                total += itemTotal;
 
-                            let cart = getCart();
-                            const existingItemIndex = cart.findIndex(item => item.name === productName);
-
-                            if (existingItemIndex > -1) {
-                                cart[existingItemIndex].quantity = (cart[existingItemIndex].quantity || 1) + 1;
-                            } else {
-                                cart.push({ ...productToAdd, quantity: 1 });
-                            }
-
-                            saveCart(cart);
-                            updateCartCount();
-
-                            window.location.href = './giohang.html';
-                        }
-                    }
-                }
+                const li = document.createElement('li');
+                li.className = 'cart-item';
+                li.innerHTML = `
+          <div class="item-info">
+            <img src="${item.image || './image_TGDD/default.png'}" alt="${item.name}" width="80">
+            <strong>${item.name}</strong>
+          </div>
+          <div class="item-details">
+            <span class="price">${item.price}</span>
+            <div class="quantity-controls">
+              <button onclick="changeQuantity(${index}, -1)">-</button>
+              <input type="number" value="${quantity}" min="1" onchange="changeQuantity(${index}, this.value - ${quantity})">
+              <button onclick="changeQuantity(${index}, 1)">+</button>
+            </div>
+            <span class="item-total">${formatPrice(itemTotal)}</span>
+            <button class="remove" onclick="removeItem(${index})">Xóa</button>
+          </div>
+        `;
+                cartList.appendChild(li);
             });
+
+            cartTotal.textContent = `Tổng tiền: ${formatPrice(total)}`;
+            updateCartCount();
         }
 
-
-        function updateCartCount() {
-            const countSpElement = document.getElementById('countSp');
-            if (countSpElement) {
-                const cart = getCart();
-                const totalQuantity = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
-                countSpElement.textContent = totalQuantity > 0 ? totalQuantity : '';
-            }
-        }
-
-
-        displayCart();
-        updateCartCount(); 
+        renderCart();
     </script>
 </body>
 
