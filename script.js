@@ -54,17 +54,34 @@ fetch('products.json')
         });
     });
 
+
 function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push(product);
+    let found = false;
+
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id === product.id) {
+            cart[i].quantity = (cart[i].quantity || 1) + 1;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        product.quantity = 1;
+        cart.push(product);
+    }
+
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    document.getElementById("countSp").innerHTML = cart.length;
+    let totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    document.getElementById("countSp").innerHTML = totalItems;
 }
-updateCartCount();
+
+
 
 var xacNhanDc = document.getElementById("xacnhandc");
 xacNhanDc.addEventListener("click", () => {
@@ -275,16 +292,4 @@ darkBtn.addEventListener("click", function () {
     }
 })
 
-let countSp = document.getElementById("countSp");
-countSp.innerHTML = 0;
-
-let themGioHang = document.getElementById("themGioHang");
-console.log(themGioHang);
-
-function countSpp() {
-    let countValue = parseInt(countSp.innerHTML) || 0;
-    alert("Thêm giỏ hàng thành công")
-    countValue += 1;
-    countSp.innerHTML = countValue;
-};
 
