@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "name": "Laptop HP Gaming VICTUS 16 s0078AX R5",
         "price": "20.690.000đ",
         "loai": "HP",
@@ -7,6 +8,7 @@
         "image": "./hp-victus-16-r0127tx-i7-8c5n2pa-170225-105918-087-600x600 (1).jpg"
     },
     {
+        "id": 2,
         "name": "Samsung Galaxy A56 5G 8GB 128GB",
         "price": "6.790.000đ",
         "loai": "phone",
@@ -14,6 +16,7 @@
         "image": "./samsung-galaxy-a56-5g-gray-thumb-1-600x600.jpg"
     },
     {
+        "id": 3,
         "name": "Laptop HP Gaming VICTUS 16 s0078AX R5",
         "price": "20.690.000đ",
         "loai": "HP",
@@ -21,6 +24,7 @@
         "image": "./hp-victus-16-r0127tx-i7-8c5n2pa-170225-105918-087-600x600 (1).jpg"
     },
     {
+        "id": 4,
         "name": "Samsung Galaxy A56 5G 8GB 128GB",
         "price": "6.790.000đ",
         "loai": "phone",
@@ -28,6 +32,7 @@
         "image": "./samsung-galaxy-a56-5g-gray-thumb-1-600x600.jpg"
     },
     {
+        "id": 5,
         "name": "Laptop HP Gaming VICTUS 16 s0078AX R5",
         "price": "20.690.000đ",
         "loai": "HP",
@@ -35,6 +40,7 @@
         "image": "./hp-victus-16-r0127tx-i7-8c5n2pa-170225-105918-087-600x600 (1).jpg"
     },
     {
+        "id": 6,
         "name": "Samsung Galaxy A56 5G 8GB 128GB",
         "price": "6.790.000đ",
         "loai": "phone",
@@ -42,6 +48,7 @@
         "image": "./samsung-galaxy-a56-5g-gray-thumb-1-600x600.jpg"
     },
     {
+        "id": 7,
         "name": "Laptop HP Gaming VICTUS 16 s0078AX R5",
         "price": "20.690.000đ",
         "loai": "HP",
@@ -49,6 +56,7 @@
         "image": "./hp-victus-16-r0127tx-i7-8c5n2pa-170225-105918-087-600x600 (1).jpg"
     },
     {
+        "id": 8,
         "name": "Samsung Galaxy A56 5G 8GB 128GB",
         "price": "6.790.000đ",
         "loai": "phone",
@@ -56,6 +64,7 @@
         "image": "./samsung-galaxy-a56-5g-gray-thumb-1-600x600.jpg"
     },
     {
+        "id": 9,
         "name": "Laptop HP Gaming VICTUS 16 s0078AX R5",
         "price": "20.690.000đ",
         "loai": "HP",
@@ -63,6 +72,7 @@
         "image": "./hp-victus-16-r0127tx-i7-8c5n2pa-170225-105918-087-600x600 (1).jpg"
     },
     {
+        "id": 10,
         "name": "Samsung Galaxy A56 5G 8GB 128GB",
         "price": "6.790.000đ",
         "loai": "phone",
@@ -70,6 +80,7 @@
         "image": "./samsung-galaxy-a56-5g-gray-thumb-1-600x600.jpg"
     },
     {
+        "id": 11,
         "name": "Laptop HP Gaming VICTUS 16 s0078AX R5",
         "price": "20.690.000đ",
         "loai": "HP",
@@ -77,6 +88,7 @@
         "image": "./hp-victus-16-r0127tx-i7-8c5n2pa-170225-105918-087-600x600 (1).jpg"
     },
     {
+        "id": 12,
         "name": "Samsung Galaxy A56 5G 8GB 128GB",
         "price": "6.790.000đ",
         "loai": "phone",
