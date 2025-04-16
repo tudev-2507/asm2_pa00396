@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng - Thế Giới Di Động</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="./image_TGDD/headerimg.png" alt="">
+    </header>
+    <nav>
+        <div class="container">
+            <ul id="down-header">
+                <li id="tgdd"><a href="./index.html"><img src="./image_TGDD/Screenshot 2025-02-09 214638.png"
+                            alt=""></a>
+                </li>
+                <li><a href="#">Thanh Hóa<i class='bx bx-caret-down'></i></a></li>
+                <li><input type="text" placeholder=" Tìm Kiếm..."><i class='bx bx-search-alt-2'></i></li>
+                <li><a href="./giohang.html"><button><i class='bx bxs-shopping-bag'></i>Giỏ Hàng<span
+                                id="countSp"></span></button></a></li>
+                <li><a href="">Lịch Sử <br>Đơn Hàng <i class='bx bx-history'></i></a></li>
+                <li><a href=""><span class="btn-content"><span class="btn-top"></span></span>Mua Thẻ Nạp Ngay !</a>
+                </li>
+                <li><a href="">24h Công Nghệ</a></li>
+                <li><a href="">Hỏi Đáp</a></li>
+                <li><a href="">Game App</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Giỏ Hàng Của Bạn</h1>
+        <ul id="cart-list">
+        </ul>
+        <div id="cart-total">
+            Tổng tiền: 0đ
+        </div>
+        <div class="empty-cart" style="display: none;">
+            <p>Giỏ hàng của bạn đang trống.</p>
+            <a href="/">Tiếp tục mua sắm</a>
+        </div>
+    </div>
+
+    <script>
+        function getCart() {
+            const cartData = localStorage.getItem('cart');
+            return cartData ? JSON.parse(cartData) : [];
+        }
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+
+        const cartListElement = document.getElementById('cart-list');
+        const cartTotalElement = document.getElementById('cart-total');
+        const emptyCartMessage = document.querySelector('.empty-cart');
+
+        function displayCart() {
+            const cart = getCart();
+            cartListElement.innerHTML = '';
+
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                cartTotalElement.textContent = 'Tổng tiền: 0đ';
+                return;
+            } else {
+                emptyCartMessage.style.display = 'none';
+            }
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('cart-item');
+                const priceNumber = parseFloat(item.price.replace(/\./g, '').replace('đ', ''));
+                const itemTotal = priceNumber * (item.quantity || 1);
+                total += itemTotal;
+
+                listItem.innerHTML = `
+                    <div class="item-info">
+                        <img src="${item.image}" alt="${item.name}">
+                        <span>${item.name}</span>
+                    </div>
+                    <div class="item-details">
+                        <span class="price">${item.price}</span>
+                        <div class="quantity-controls">
+                            <button class="decrease" data-index="${index}">-</button>
+                            <input type="number" value="${item.quantity || 1}" min="1" class="quantity-input" data-index="${index}">
+                            <button class="increase" data-index="${index}">+</button>
+                        </div>
+                        <span class="item-total">${formatPrice(itemTotal)}</span>
+                        <button class="remove" data-index="${index}">Xóa</button>
+                    </div>
+                `;
+                cartListElement.appendChild(listItem);
+            });
+
+            cartTotalElement.textContent = `Tổng tiền: ${formatPrice(total)}`;
+
+            addCartItemEventListeners();
+        }
+
+        function formatPrice(price) {
+            return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        }
+
+        function addCartItemEventListeners() {
+            const removeButtons = document.querySelectorAll('.remove');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const indexToRemove = parseInt(this.dataset.index);
+                    removeItemFromCart(indexToRemove);
+                });
+            });
+
+            const decreaseButtons = document.querySelectorAll('.decrease');
+            decreaseButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const indexToDecrease = parseInt(this.dataset.index);
+                    updateItemQuantity(indexToDecrease, -1);
+                });
+            });
+
+            const increaseButtons = document.querySelectorAll('.increase');
+            increaseButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const indexToIncrease = parseInt(this.dataset.index);
+                    updateItemQuantity(indexToIncrease, 1);
+                });
+            });
+
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            quantityInputs.forEach(input => {
+                input.addEventListener('change', function () {
+                    const indexToUpdate = parseInt(this.dataset.index);
+                    const newQuantity = parseInt(this.value);
+                    if (!isNaN(newQuantity) && newQuantity > 0) {
+                        updateItemQuantity(indexToUpdate, newQuantity - (getCart()[indexToUpdate].quantity || 1));
+                    } else {
+                        this.value = getCart()[indexToUpdate].quantity || 1;
+                    }
+                });
+            });
+        }
+
+
+        function removeItemFromCart(index) {
+            const cart = getCart();
+            cart.splice(index, 1);
+            saveCart(cart);
+            displayCart();
+        }
+
+
+        function updateItemQuantity(index, change) {
+            const cart = getCart();
+            if (cart[index]) {
+                cart[index].quantity = (cart[index].quantity || 1) + change;
+                if (cart[index].quantity < 1) {
+                    cart[index].quantity = 1;
+                }
+                saveCart(cart);
+                displayCart();
+            }
+        }
+
+
+        if (productList) {
+            productList.addEventListener('click', function (event) {
+                const addToCartButton = event.target.closest('.add-to-cart');
+                if (addToCartButton) {
+                    const productItem = addToCartButton.closest('.product-item');
+                    if (productItem) {
+                        const nameElement = productItem.querySelector('.product-name');
+                        const priceElement = productItem.querySelector('.product-price');
+                        const imageElement = productItem.querySelector('img');
+
+                        if (nameElement && priceElement && imageElement) {
+                            const productName = nameElement.textContent;
+                            const productPrice = priceElement.textContent;
+                            const productImage = imageElement.src;
+
+                            const productToAdd = {
+                                name: productName,
+                                price: productPrice,
+                                image: productImage
+                            };
+
+                            let cart = getCart();
+                            const existingItemIndex = cart.findIndex(item => item.name === productName);
+
+                            if (existingItemIndex > -1) {
+                                cart[existingItemIndex].quantity = (cart[existingItemIndex].quantity || 1) + 1;
+                            } else {
+                                cart.push({ ...productToAdd, quantity: 1 });
+                            }
+
+                            saveCart(cart);
+                            updateCartCount();
+
+                            window.location.href = './giohang.html';
+                        }
+                    }
+                }
+            });
+        }
+
+
+        function updateCartCount() {
+            const countSpElement = document.getElementById('countSp');
+            if (countSpElement) {
+                const cart = getCart();
+                const totalQuantity = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+                countSpElement.textContent = totalQuantity > 0 ? totalQuantity : '';
+            }
+        }
+
+
+        displayCart();
+        updateCartCount(); 
+    </script>
+</body>
+
+</html>
